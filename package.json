@@ -17,7 +17,7 @@
     "sed": "0.0.1"
   },
   "scripts": {
-    "start": "SET PORT=5500 && react-scripts start",
+    "start": "SET PORT=3002 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

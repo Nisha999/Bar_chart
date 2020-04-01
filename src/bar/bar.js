@@ -7,11 +7,18 @@ class Bar extends React.Component {
   constructor() {
     super();
     this.ref = React.createRef();
+
     
   }
-  componentDidUpdate() {
+  componentDidMount() {
     this.init();
+  }
+  componentDidUpdate() {
+
     this.barTransition();
+    this.init();
+  
+
   }
 
   barTransition() {
@@ -22,8 +29,8 @@ class Bar extends React.Component {
       .selectAll('.bar')
       .data(data)
       .transition(t)
-      .attr('y', d => yScale(d.totalCount))
-      .attr('height', d => height - yScale(d.totalCount))
+      .attr('y', d => yScale(d.value))
+      .attr('height', d => height - yScale(d.value))
   }
   init() {
     
@@ -33,7 +40,7 @@ class Bar extends React.Component {
     // prepare initial data from where transition starts.
     const initialData = data.map(obj => ({
       category: obj.category,
-      totalCount: 0
+      value: 0
     }));
 
  
@@ -59,25 +66,25 @@ class Bar extends React.Component {
 
     this.barTransition();
         
-    // bar-label
-    select(node)
+    // // bar-label
+    // select(node)
     
-      .selectAll('.bar-label')
-      .data(data)
-      .enter()
+    //   .selectAll('.bar-label')
+    //   .data(data)
+    //   .enter()
      
-      .append('text')
-      .classed('bar-label', true)
-      .transition(t)
-      .attr('x', d => xScale(d.category) + xScale.bandwidth()/2)
-      .attr('dx', 0)
-      .attr('y', d => yScale(d.totalCount))
-      .attr('dy', -6)
-      .attr("font-family", "sans-serif")
-      .attr("font-size", "10px")
-      .attr("fill", "black")
-      .attr("text-anchor", " middle") 
-      .text(function(d) { return d.totalCount; })   
+    //   .append('text')
+    //   .classed('bar-label', true)
+    //   .transition(t)
+    //   .attr('x', d => xScale(d.category) + xScale.bandwidth()/2)
+    //   .attr('dx', 0)
+    //   .attr('y', d => yScale(d.value))
+    //   .attr('dy', -6)
+    //   .attr("font-family", "sans-serif")
+    //   .attr("font-size", "10px")
+    //   .attr("fill", "black")
+    //   .attr("text-anchor", " middle") 
+    //   .text(function(d) { return d.value; })   
 
 }
   render() {
